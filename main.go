@@ -34,6 +34,7 @@ func main() {
 
 	// Start Server in a Goroutine
 	go func() {
+		log.Printf("Starting server on %s", port)
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("listen: %s\n", err)
 		}
