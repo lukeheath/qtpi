@@ -25,6 +25,11 @@ func main() {
 	port = ":" + port // Ensure port includes leading :
 
 	router := gin.Default()
+
+	// Route to serve home page
+	router.Static("/", "./static")
+
+	// Route to handle incoming SMS messages
 	router.POST("/sms", HandleSMS)
 
 	srv := &http.Server{
