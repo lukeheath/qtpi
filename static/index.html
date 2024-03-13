@@ -7,7 +7,7 @@
     <style>
         body {
             background: url("./images/qtpi-bg.jpg");
-            font-family: Arial, sans-serif;
+            font-family: Georgia, serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -19,12 +19,12 @@
         .container {
             text-align: center;
             padding: 2rem;
-            background-color: white;
+            background-color: #f3ffff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,5,0.25);
         }
         h1 {
-            color: #daa01a;
+            color: #328da8;
             font-size: 3rem;
             font-weight: 200;
         }
@@ -33,19 +33,29 @@
             font-size: 1.5rem;
         }
         a {
-            color: #daa01a;
+            color: #328da8;
             text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .qr-code {
+            margin-top: 1rem;
+            border: 1px solid black;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Hi, I'm QtPi!</h1>
+        <div class="mascot-wrapper">
+            <img src="./images/qtpi-mascot.jpg" width="150">
+            <h1>Hi, I'm QtPi!</h1>
+        </div>
         <p>Send me a text at 1-833-659-1332 and I'll reply with a cute animal photo and a fact about pi.</p>
 
         <p>Scan the QR code below (<a href="https://qr.io/vcard-profilecard/ABfXmJ">or click this link</a>) to add me as a contact on your device.</p>
 
-        <img alt="QtPi QR code" src="./images/QtPiContact.svg" width="300">
+        <img class="qr-code" alt="QtPi QR code" src="./images/QtPiContact.svg" width="300">
     </div>
 </body>
 </html>

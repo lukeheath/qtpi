@@ -25,3 +25,6 @@ go.work
 
 # binary
 qtpi
+
+# thumbnails
+.DS_Store
