@@ -51,7 +51,7 @@ func getSearchTerm(message string) (string, error) {
 	searchTerm := response.Choices[0].Message.Content
 
 	fmt.Println("-----\n\n" + "User mesage: " + message)
-	fmt.Println("Search term: " + searchTerm + "\n\n-----")
+	fmt.Println("Search term: " + searchTerm)
 
 	// Use regex to remove all quotes from the string
 	regex := regexp.MustCompile(`["]+`)
@@ -90,6 +90,8 @@ func getCaption(caption string, message string) (string, error) {
 	}
 
 	customCaption := response.Choices[0].Message.Content
+
+	fmt.Println("Caption: " + customCaption + "\n\n-----")
 
 	// Use regex to remove all quotes from the string
 	regex := regexp.MustCompile(`["]+`)
