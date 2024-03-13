@@ -61,7 +61,7 @@ func HandleSMS(ginCtx *gin.Context) {
 		return
 	}
 
-	photo, _ := getPhoto()
+	photo, _ := getPhoto(queryString.Get("Body"))
 	customCaption, _ := getCaption(photo.Caption, queryString.Get("Body"))
 
 	messageBody := twiml.MessagingBody{

@@ -4,10 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"math/rand"
 	"net/http"
 	"os"
-	"strconv"
+	"strings"
 )
 
 // pexelsAuthToken is the authorization token for the Pexels API, loaded from environment variables.
@@ -34,10 +33,7 @@ type PexelsResponse struct {
 // getPhoto fetches a random photo from the Pexels API based on the "cute animals" query.
 // It returns a Photo object and an error. In case of an error or if no photos are returned by the API,
 // a default Photo is returned.
-func getPhoto() (Photo, error) {
-	// Generate a random page number to vary the photos returned by the Pexels API.
-	page := rand.Intn(1000) + 1
-
+func getPhoto(message string) (Photo, error) {
 	// defaultPhoto is returned in case of any error during the API request or when no photos are found.
 	defaultPhoto := Photo{
 		Url:             "https://images.pexels.com/photos/50577/hedgehog-animal-baby-cute-50577.jpeg",
@@ -46,8 +42,17 @@ func getPhoto() (Photo, error) {
 		Caption:         "Hedgehog",
 	}
 
+	// Get search term from the message and use it to query the Pexels API.
+	searchTerm := "cute animals"
+	if message != "" {
+		searchTerm, _ = getSearchTerm(message)
+	}
+
+	// Replace all spaces for the API request.
+	searchTerm = strings.ReplaceAll(searchTerm, " ", "+")
+
 	// Construct the request to the Pexels API with the required headers.
-	req, err := http.NewRequest("GET", "https://api.pexels.com/v1/search?per_page=1&query=cute%20animals&page="+strconv.Itoa(page), nil)
+	req, err := http.NewRequest("GET", "https://api.pexels.com/v1/search?per_page=1&query="+searchTerm, nil)
 	if err != nil {
 		return defaultPhoto, err
 	}
