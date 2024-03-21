@@ -24,7 +24,8 @@ func main() {
 	}
 	port = ":" + port // Ensure port includes leading :
 
-	router := gin.Default()
+	router := gin.New()
+	router.Use(gin.Recovery())
 
 	// Route to serve home page
 	router.Static("/", "./static")
